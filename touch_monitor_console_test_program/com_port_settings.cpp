@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <atlstr.h>
 #include <iostream>
+#include "processing.h"
 
 const unsigned char kPacketSize = 42;
 
@@ -31,6 +32,8 @@ unsigned char transistor_state_buffer[80];
 unsigned long __stdcall ReadFromComPortInThread(void* p_param);
 void find_packet_in_buffer(unsigned char* buff, unsigned long size);
 void process_packet(unsigned char* buff, unsigned char size);
+void process_smthn(unsigned char* buff, unsigned char size, int line_num);
+void print_transistors_state1();
 
 void configure_com_port() {
   //  Initialize the DCB structure.
@@ -109,49 +112,59 @@ void find_packet_in_buffer(unsigned char* buff, unsigned long size) {
   }
 }
 
-void proccess_byte(unsigned char byte_, int number) {
-  for (int i = 0; i < 8; i++) {
-    if ((byte_ >> i) & 1) {
-      transistor_state_buffer[(number * 8) + i] = 1;
-    } else {
-      transistor_state_buffer[(number * 8) + i] = 0;
-    }
-  }
-}
-
-void print_transistors_state() {
-  for (int i = 0; i < 80; i++) {
-    printf("%d",transistor_state_buffer[i]);
-  }
-  printf("\r\n");
-}
-
-void proccess_line(unsigned char* buff, unsigned char size) {
-  for(int i = 0; i < size; i++) {
-    proccess_byte(buff[i], i);
-  }
-  print_transistors_state();
-  SecureZeroMemory(transistor_state_buffer, 80);
-}
 
 void process_packet(unsigned char* buff, unsigned char size) {
-  printf("\r\n");// Needed to show transistor lines properly
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
+//   printf("\r\n");// Needed to show transistor lines properly
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
   for(int i = 0; i < 4; i++) {
-    proccess_line(&(buff[i*10]), 10);
+//    proccess_line(&(buff[i*10]), 10);
+    process_smthn(&(buff[i*10]), 10, i);
   }
-  printf("\r\n");// Needed to show transistor lines properly
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
-  printf("\r\n");//
+  processing_transistors();
+//  print_transistors_state1();
+  free_processing_structure();
+//   printf("\r\n");// Needed to show transistor lines properly
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+//   printf("\r\n");//
+}
+
+
+void process_smthn(unsigned char* buff, unsigned char size, int line_num) {
+
+  int array_count = 0;
+
+  for (int i = 0; i < 10; i++) {
+    for(int j = 0; j < 8; j++) {
+      if ((buff[i] >> j) & 1) {
+        processing_structure[line_num][array_count] = 1;
+        array_count++;
+      } else {
+        processing_structure[line_num][array_count] = 0;
+        array_count++;
+      }
+    }
+  }
+
+
+
+}
+
+void print_transistors_state1() {
+  for(int i = 0; i < 4; i++) {
+    for(int j = 0; j < 80; j++) {
+       printf("%d",processing_structure[i][j]);
+    }
+    printf("\r\n");
+  }
 }

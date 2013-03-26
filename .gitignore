@@ -17,5 +17,6 @@
 *.sdf
 *.obj
 *.exe
+*.opensdf
 Debug
 ipch
