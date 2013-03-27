@@ -3,10 +3,6 @@
 #include <stdio.h>
 #include <Windows.h>
 
-
-// /*extern */const unsigned char kLines = 4;
-// /*extern */const unsigned char kTransistorsInLine = 80;
-
 unsigned char processing_structure[LINES][TRANSISTORS_IN_LINE];
 unsigned char shadow_centers[LINES];
 
@@ -85,14 +81,15 @@ void coordinates() {
 
 void compute_coordinates_0_1() {
   double x_transmitter_1 = 550.0;
-  double y_transmitter_1 = 333.54 - ((333.54 / 80.0) * 2.5);
+  double y_transmitter_1 = (333.54 / 80.0) * 77.5;
   double x_transmitter_2 = 550.0;
   double y_transmitter_2 = (333.54 / 80.0) * 2.5;
 
   double x_point1 = 0.0;
-  double y_point1 = (333.54 / 80.0) * shadow_centers[1];//TODO
+  double y_point1 = (333.54 / 80.0) * (80 - shadow_centers[0]);
+
   double x_point2 = 0.0;
-  double y_point2 = (333.54 / 80.0) * shadow_centers[0];//TODO
+  double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[1]);
 
   double k1 = (y_transmitter_1 - y_point1) / (x_transmitter_1 - x_point1);
   double b1 = y_transmitter_1 - (k1 * x_transmitter_1);
@@ -105,11 +102,9 @@ void compute_coordinates_0_1() {
 
   x = x * (1920.0/550.0);
   y = y * (1080.0/333.54);
-  y = 1080.0 - y;
 
   printf("X:  %4.2f\r\n",x);
   printf("Y:  %4.2f\r\n",y);
-//   printf ("floats: %4.2f %+.0e %E \n", 3.1416, 3.1416, 3.1416);
   SetCursorPos(x,y);
 
 }
@@ -148,7 +143,7 @@ void compute_coordinates_2_3() {
   double x_transmitter_1 = 0.0;
   double y_transmitter_1 = (333.54 / 80.0) * 2.5;
   double x_transmitter_2 = 0.0;
-  double y_transmitter_2 =  333.54 - ((333.54 / 80.0) * 2.5);
+  double y_transmitter_2 = (333.54 / 80.0) * 77.5;
 
   double x_point1 = 550.0;
   double y_point1 = (333.54 / 80.0) * shadow_centers[2];
