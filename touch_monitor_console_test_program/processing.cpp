@@ -2,6 +2,7 @@
 #include "processing.h"
 #include <stdio.h>
 #include <Windows.h>
+#include "intersection.h"
 
 unsigned char processing_structure[LINES][TRANSISTORS_IN_LINE];
 unsigned char shadow_centers[LINES];
@@ -92,15 +93,18 @@ void compute_coordinates_0_1() {
   double x_point2 = 0.0;
   double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[1]);
 
-  double k1 = (y_transmitter_1 - y_point1) / (x_transmitter_1 - x_point1);
-  double b1 = y_transmitter_1 - (k1 * x_transmitter_1);
-
-  double k2 = (y_transmitter_2 - y_point2) / (x_transmitter_2 - x_point2);
-  double b2 = y_transmitter_2 - (k2 * x_transmitter_2);
-
-  double x = ((b1 - b2) / (k2 - k1));
-  double y = (k2 * x) + b2;
-
+  double x = 0.0;
+  double y = 0.0;
+  find_intersection(x_point1,
+      y_point1,
+      x_transmitter_1,
+      y_transmitter_1,
+      x_point2,
+      y_point2,
+      x_transmitter_2,
+      y_transmitter_2,
+      &x,
+      &y);
   coordinates_scale_print_and_set_cursor(x, y);
 }
 
@@ -115,16 +119,18 @@ void compute_coordinates_1_2() {
   double x_point2 = 550.0;
   double y_point2 = (333.54 / 80.0) * shadow_centers[2];
 
-
-  double k1 = (y_transmitter_1 - y_point1) / (x_transmitter_1 - x_point1);
-  double b1 = y_transmitter_1 - (k1 * x_transmitter_1);
-
-  double k2 = (y_transmitter_2 - y_point2) / (x_transmitter_2 - x_point2);
-  double b2 = y_transmitter_2 - (k2 * x_transmitter_2);
-
-  double x = ((b1 - b2) / (k2 - k1));
-  double y = (k2 * x) + b2;
-
+  double x = 0.0;
+  double y = 0.0;
+  find_intersection(x_point1,
+      y_point1,
+      x_transmitter_1,
+      y_transmitter_1,
+      x_point2,
+      y_point2,
+      x_transmitter_2,
+      y_transmitter_2,
+      &x,
+      &y);
   coordinates_scale_print_and_set_cursor(x, y);
 }
 
@@ -139,15 +145,18 @@ void compute_coordinates_2_3() {
   double x_point2 = 550.0;
   double y_point2 = (333.54 / 80.0) * shadow_centers[3];
 
-  double k1 = (y_transmitter_1 - y_point1) / (x_transmitter_1 - x_point1);
-  double b1 = y_transmitter_1 - (k1 * x_transmitter_1);
-
-  double k2 = (y_transmitter_2 - y_point2) / (x_transmitter_2 - x_point2);///
-  double b2 = y_transmitter_2 - (k2 * x_transmitter_2);
-
-  double x = ((b1 - b2) / (k2 - k1));
-  double y = (k2 * x) + b2;
-
+  double x = 0.0;
+  double y = 0.0;
+  find_intersection(x_point1,
+      y_point1,
+      x_transmitter_1,
+      y_transmitter_1,
+      x_point2,
+      y_point2,
+      x_transmitter_2,
+      y_transmitter_2,
+      &x,
+      &y);
   coordinates_scale_print_and_set_cursor(x, y);
 }
 
@@ -162,48 +171,19 @@ void compute_coordinates_0_3() {
   double x_point2 = 550.0;
   double y_point2 = (333.54 / 80.0) * shadow_centers[3];
 
-  double k1 = (y_transmitter_1 - y_point1) / (x_transmitter_1 - x_point1);
-  double b1 = y_transmitter_1 - (k1 * x_transmitter_1);
-  double k2 = (y_transmitter_2 - y_point2) / (x_transmitter_2 - x_point2);
-  double b2 = y_transmitter_2 - (k2 * x_transmitter_2);
-  double x = ((b1 - b2) / (k2 - k1));
-  double y = (k2 * x) + b2;
-
+  double x = 0.0;
+  double y = 0.0;
+  find_intersection(x_point1,
+                    y_point1,
+                    x_transmitter_1,
+                    y_transmitter_1,
+                    x_point2,
+                    y_point2,
+                    x_transmitter_2,
+                    y_transmitter_2,
+                    &x,
+                    &y);
   coordinates_scale_print_and_set_cursor(x, y);
-}
-
-void find_line_factors(/*input*/
-                       const double x1,
-                       const double y1,
-                       const double x2,
-                       const double y2,
-                       /*output*/
-                       double* k,
-                       double* b) {
-  *k = (y2 - y1) / (x2 - x1);
-  *b = y1 - ((*k) * x1);
-}
-
-void find_intersection(/*input*/
-                       const double first_line_x1,
-                       const double first_line_y1,
-                       const double first_line_x2,
-                       const double first_line_y2,
-                       const double second_line_x1,
-                       const double second_line_y1,
-                       const double second_line_x2,
-                       const double second_line_y2,
-                       /*output*/
-                       double* x,
-                       double* y) {
-  double k1 = 0;// static
-  double b1 = 0;// static
-  double k2 = 0;// static
-  double b2 = 0;// static
-  find_line_factors(first_line_x1, first_line_y1, first_line_x2, first_line_y2, &k1, &b1);
-  find_line_factors(second_line_x1, second_line_y1, second_line_x2, second_line_y2, &k2, &b2);
-  *x = ((b1 - b2) / (k2 - k1));
-  *y = (k2 * (*x)) + b2;
 }
 
 void coordinates_scale_print_and_set_cursor(double x, double y) {

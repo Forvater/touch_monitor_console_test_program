@@ -75,11 +75,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="com_port_settings.cpp" />
+    <ClCompile Include="intersection.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="processing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com_port_settings.h" />
+    <ClInclude Include="intersection.h" />
     <ClInclude Include="processing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

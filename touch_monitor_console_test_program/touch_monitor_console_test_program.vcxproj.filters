@@ -24,12 +24,18 @@
     <ClCompile Include="processing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="intersection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com_port_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="processing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="intersection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
