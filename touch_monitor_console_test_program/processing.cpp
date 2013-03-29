@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include "intersection.h"
+#include "simple_filter.h"
 
 unsigned char processing_structure[LINES][TRANSISTORS_IN_LINE];
 unsigned char shadow_centers[LINES];
@@ -82,6 +83,9 @@ void coordinates() {
 }
 
 void compute_coordinates_0_1() {
+  static double x_prev = 0.0;
+  static double y_prev = 0.0;
+
   double x_transmitter_1 = 550.0;
   double y_transmitter_1 = (333.54 / 80.0) * 77.5;
   double x_transmitter_2 = 550.0;
@@ -105,10 +109,21 @@ void compute_coordinates_0_1() {
       y_transmitter_2,
       &x,
       &y);
+
+  x = simple_filter(x, x_prev, 0.3, 0.7);
+  y = simple_filter(y, y_prev, 0.3, 0.7);
+
   coordinates_scale_print_and_set_cursor(x, y);
+
+  x_prev = x;
+  y_prev = y;
+
 }
 
 void compute_coordinates_1_2() {
+  static double x_prev = 0.0;
+  static double y_prev = 0.0;
+
   double x_transmitter_1 = 550.0;
   double y_transmitter_1 = (333.54 / 80.0) * 2.5;
   double x_transmitter_2 = 0.0;
@@ -131,10 +146,21 @@ void compute_coordinates_1_2() {
       y_transmitter_2,
       &x,
       &y);
+
+  x = simple_filter(x, x_prev, 0.3, 0.7);
+  y = simple_filter(y, y_prev, 0.3, 0.7);
+
   coordinates_scale_print_and_set_cursor(x, y);
+
+  x_prev = x;
+  y_prev = y;
+
 }
 
 void compute_coordinates_2_3() {
+  static double x_prev = 0.0;
+  static double y_prev = 0.0;
+
   double x_transmitter_1 = 0.0;
   double y_transmitter_1 = (333.54 / 80.0) * 2.5;
   double x_transmitter_2 = 0.0;
@@ -157,10 +183,21 @@ void compute_coordinates_2_3() {
       y_transmitter_2,
       &x,
       &y);
+
+  x = simple_filter(x, x_prev, 0.3, 0.7);
+  y = simple_filter(y, y_prev, 0.3, 0.7);
+
   coordinates_scale_print_and_set_cursor(x, y);
+
+  x_prev = x;
+  y_prev = y;
+
 }
 
 void compute_coordinates_0_3() {
+  static double x_prev = 0.0;
+  static double y_prev = 0.0;
+
   double x_transmitter_1 = 550.0;
   double y_transmitter_1 = (333.54 / 80.0) * 77.5;
   double x_transmitter_2 = 0.0;
@@ -183,7 +220,15 @@ void compute_coordinates_0_3() {
                     y_transmitter_2,
                     &x,
                     &y);
+
+  x = simple_filter(x, x_prev, 0.3, 0.7);
+  y = simple_filter(y, y_prev, 0.3, 0.7);
+
   coordinates_scale_print_and_set_cursor(x, y);
+
+  x_prev = x;
+  y_prev = y;
+
 }
 
 void coordinates_scale_print_and_set_cursor(double x, double y) {
@@ -198,8 +243,3 @@ void coordinates_scale_print_and_set_cursor(double x, double y) {
 //   *input1 = 0x1CBA; //error 
 //   *output1 = 1;
 // }
-
-
-
-
-

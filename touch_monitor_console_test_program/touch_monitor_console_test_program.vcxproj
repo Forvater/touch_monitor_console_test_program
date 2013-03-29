@@ -78,11 +78,13 @@
     <ClCompile Include="intersection.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="processing.cpp" />
+    <ClCompile Include="simple_filter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com_port_settings.h" />
     <ClInclude Include="intersection.h" />
     <ClInclude Include="processing.h" />
+    <ClInclude Include="simple_filter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
