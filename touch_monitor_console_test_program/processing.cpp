@@ -100,15 +100,15 @@ void compute_coordinates_0_1() {
   double x = 0.0;
   double y = 0.0;
   find_intersection(x_point1,
-      y_point1,
-      x_transmitter_1,
-      y_transmitter_1,
-      x_point2,
-      y_point2,
-      x_transmitter_2,
-      y_transmitter_2,
-      &x,
-      &y);
+                    y_point1,
+                    x_transmitter_1,
+                    y_transmitter_1,
+                    x_point2,
+                    y_point2,
+                    x_transmitter_2,
+                    y_transmitter_2,
+                    &x,
+                    &y);
 
   x = simple_filter(x, x_prev, 0.3, 0.7);
   y = simple_filter(y, y_prev, 0.3, 0.7);
@@ -137,15 +137,15 @@ void compute_coordinates_1_2() {
   double x = 0.0;
   double y = 0.0;
   find_intersection(x_point1,
-      y_point1,
-      x_transmitter_1,
-      y_transmitter_1,
-      x_point2,
-      y_point2,
-      x_transmitter_2,
-      y_transmitter_2,
-      &x,
-      &y);
+                    y_point1,
+                    x_transmitter_1,
+                    y_transmitter_1,
+                    x_point2,
+                    y_point2,
+                    x_transmitter_2,
+                    y_transmitter_2,
+                    &x,
+                    &y);
 
   x = simple_filter(x, x_prev, 0.3, 0.7);
   y = simple_filter(y, y_prev, 0.3, 0.7);
@@ -174,15 +174,15 @@ void compute_coordinates_2_3() {
   double x = 0.0;
   double y = 0.0;
   find_intersection(x_point1,
-      y_point1,
-      x_transmitter_1,
-      y_transmitter_1,
-      x_point2,
-      y_point2,
-      x_transmitter_2,
-      y_transmitter_2,
-      &x,
-      &y);
+                    y_point1,
+                    x_transmitter_1,
+                    y_transmitter_1,
+                    x_point2,
+                    y_point2,
+                    x_transmitter_2,
+                    y_transmitter_2,
+                    &x,
+                    &y);
 
   x = simple_filter(x, x_prev, 0.3, 0.7);
   y = simple_filter(y, y_prev, 0.3, 0.7);
