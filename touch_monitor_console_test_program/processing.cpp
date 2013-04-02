@@ -1,12 +1,16 @@
-#include <string.h>
-#include "processing.h"
-#include <stdio.h>
 #include <Windows.h>
+#include "processing.h"
 #include "intersection.h"
 #include "simple_filter.h"
+#include "screen_coordinates_processing.h"
 
 unsigned char processing_structure[LINES][TRANSISTORS_IN_LINE];
 unsigned char shadow_centers[LINES];
+
+double real_x = 0.0;
+double real_y = 0.0;
+double real_x_prev = 0.0; // x, computed from previous packet
+double real_y_prev = 0.0; // y, computed from previous packet
 
 void find_line_shadow_center(int line_num);
 void coordinates();
@@ -70,22 +74,25 @@ void find_line_shadow_center(int line_num) {
 void coordinates() {
   if ((shadow_centers[0] != 0) && (shadow_centers[1] != 0)) {
     compute_coordinates_0_1();
-  }
-  if ((shadow_centers[1] != 0) && (shadow_centers[2] != 0)) {
+  } else if ((shadow_centers[1] != 0) && (shadow_centers[2] != 0)) {
     compute_coordinates_1_2();
-  }
-  if ((shadow_centers[2] != 0) && (shadow_centers[3] != 0)) {
+  } else if ((shadow_centers[2] != 0) && (shadow_centers[3] != 0)) {
     compute_coordinates_2_3();
-  }
-  if ((shadow_centers[3] != 0) && (shadow_centers[0] != 0)) {
+  } else if ((shadow_centers[3] != 0) && (shadow_centers[0] != 0)) {
     compute_coordinates_0_3();
+  } else {
+    real_x = 0.0;
+    real_y = 0.0;
   }
+
+  coordinates_scale_print_and_set_cursor(real_x, real_y);
+
+  real_x_prev = real_x; // for filtering
+  real_y_prev = real_y; // for filtering
+
 }
 
 void compute_coordinates_0_1() {
-  static double x_prev = 0.0;
-  static double y_prev = 0.0;
-
   double x_transmitter_1 = 550.0;
   double y_transmitter_1 = (333.54 / 80.0) * 77.5;
   double x_transmitter_2 = 550.0;
@@ -97,8 +104,6 @@ void compute_coordinates_0_1() {
   double x_point2 = 0.0;
   double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[1]);
 
-  double x = 0.0;
-  double y = 0.0;
   find_intersection(x_point1,
                     y_point1,
                     x_transmitter_1,
@@ -107,23 +112,14 @@ void compute_coordinates_0_1() {
                     y_point2,
                     x_transmitter_2,
                     y_transmitter_2,
-                    &x,
-                    &y);
+                    &real_x,
+                    &real_y);
 
-  x = simple_filter(x, x_prev, 0.3, 0.7);
-  y = simple_filter(y, y_prev, 0.3, 0.7);
-
-  coordinates_scale_print_and_set_cursor(x, y);
-
-  x_prev = x;
-  y_prev = y;
-
+  real_x = simple_filter(real_x, real_x_prev, 0.3, 0.7);
+  real_y = simple_filter(real_y, real_y_prev, 0.3, 0.7);
 }
 
 void compute_coordinates_1_2() {
-  static double x_prev = 0.0;
-  static double y_prev = 0.0;
-
   double x_transmitter_1 = 550.0;
   double y_transmitter_1 = (333.54 / 80.0) * 2.5;
   double x_transmitter_2 = 0.0;
@@ -134,8 +130,7 @@ void compute_coordinates_1_2() {
   double x_point2 = 550.0;
   double y_point2 = (333.54 / 80.0) * shadow_centers[2];
 
-  double x = 0.0;
-  double y = 0.0;
+
   find_intersection(x_point1,
                     y_point1,
                     x_transmitter_1,
@@ -144,22 +139,15 @@ void compute_coordinates_1_2() {
                     y_point2,
                     x_transmitter_2,
                     y_transmitter_2,
-                    &x,
-                    &y);
+                    &real_x,
+                    &real_y);
 
-  x = simple_filter(x, x_prev, 0.3, 0.7);
-  y = simple_filter(y, y_prev, 0.3, 0.7);
-
-  coordinates_scale_print_and_set_cursor(x, y);
-
-  x_prev = x;
-  y_prev = y;
+  real_x = simple_filter(real_x, real_x_prev, 0.3, 0.7);
+  real_y = simple_filter(real_y, real_y_prev, 0.3, 0.7);
 
 }
 
 void compute_coordinates_2_3() {
-  static double x_prev = 0.0;
-  static double y_prev = 0.0;
 
   double x_transmitter_1 = 0.0;
   double y_transmitter_1 = (333.54 / 80.0) * 2.5;
@@ -171,8 +159,7 @@ void compute_coordinates_2_3() {
   double x_point2 = 550.0;
   double y_point2 = (333.54 / 80.0) * shadow_centers[3];
 
-  double x = 0.0;
-  double y = 0.0;
+
   find_intersection(x_point1,
                     y_point1,
                     x_transmitter_1,
@@ -181,23 +168,14 @@ void compute_coordinates_2_3() {
                     y_point2,
                     x_transmitter_2,
                     y_transmitter_2,
-                    &x,
-                    &y);
+                    &real_x,
+                    &real_y);
 
-  x = simple_filter(x, x_prev, 0.3, 0.7);
-  y = simple_filter(y, y_prev, 0.3, 0.7);
-
-  coordinates_scale_print_and_set_cursor(x, y);
-
-  x_prev = x;
-  y_prev = y;
-
+  real_x = simple_filter(real_x, real_x_prev, 0.3, 0.7);
+  real_y = simple_filter(real_y, real_y_prev, 0.3, 0.7);
 }
 
 void compute_coordinates_0_3() {
-  static double x_prev = 0.0;
-  static double y_prev = 0.0;
-
   double x_transmitter_1 = 550.0;
   double y_transmitter_1 = (333.54 / 80.0) * 77.5;
   double x_transmitter_2 = 0.0;
@@ -208,8 +186,6 @@ void compute_coordinates_0_3() {
   double x_point2 = 550.0;
   double y_point2 = (333.54 / 80.0) * shadow_centers[3];
 
-  double x = 0.0;
-  double y = 0.0;
   find_intersection(x_point1,
                     y_point1,
                     x_transmitter_1,
@@ -218,25 +194,20 @@ void compute_coordinates_0_3() {
                     y_point2,
                     x_transmitter_2,
                     y_transmitter_2,
-                    &x,
-                    &y);
+                    &real_x,
+                    &real_y);
 
-  x = simple_filter(x, x_prev, 0.3, 0.7);
-  y = simple_filter(y, y_prev, 0.3, 0.7);
-
-  coordinates_scale_print_and_set_cursor(x, y);
-
-  x_prev = x;
-  y_prev = y;
+  real_x = simple_filter(real_x, real_x_prev, 0.3, 0.7);
+  real_y = simple_filter(real_y, real_y_prev, 0.3, 0.7);
 
 }
 
 void coordinates_scale_print_and_set_cursor(double x, double y) {
-  x = x * (1920.0/550.0);
-  y = y * (1080.0/333.54);
-  printf("X:  %4.2f\r\n", x);
-  printf("Y:  %4.2f\r\n", y);
-  SetCursorPos(x,y);
+  if ((x != 0.0) && (y != 0.0)) {
+    x = x * (1920.0/550.0);
+    y = y * (1080.0/333.54);
+  }
+  print_coordinates_and_set_cursor(x, y);
 }
 
 // void const_test(const int* input1, int* output1) {

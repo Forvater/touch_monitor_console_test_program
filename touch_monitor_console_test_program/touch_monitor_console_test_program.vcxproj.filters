@@ -30,6 +30,9 @@
     <ClCompile Include="simple_filter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="screen_coordinates_processing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com_port_settings.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="screen_coordinates_processing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
