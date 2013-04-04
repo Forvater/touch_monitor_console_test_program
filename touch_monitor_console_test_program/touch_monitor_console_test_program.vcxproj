@@ -77,6 +77,7 @@
     <ClCompile Include="com_port_settings.cpp" />
     <ClCompile Include="intersection.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mouse_functions.cpp" />
     <ClCompile Include="processing.cpp" />
     <ClCompile Include="screen_coordinates_processing.cpp" />
     <ClCompile Include="simple_filter.cpp" />
@@ -84,6 +85,7 @@
   <ItemGroup>
     <ClInclude Include="com_port_settings.h" />
     <ClInclude Include="intersection.h" />
+    <ClInclude Include="mouse_functions.h" />
     <ClInclude Include="processing.h" />
     <ClInclude Include="screen_coordinates_processing.h" />
     <ClInclude Include="simple_filter.h" />
