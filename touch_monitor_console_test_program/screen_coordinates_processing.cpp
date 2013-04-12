@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include "mouse_functions.h"
+#include "simple_console_timer.h"
 
 double screen_x = 0.0;
 double screen_y = 0.0;
@@ -46,9 +47,24 @@ void print_coordinates_and_set_cursor(double x, double y) {
   screen_y_prev = screen_y;
 }
 
+bool condit() {
+  if (((screen_x_ent_zone - screen_x) < 100.0) && ((screen_y_ent_zone - screen_y) < 100.0)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void callback_proc() {
+//  mouse_lmb_up((long) screen_x_ent_zone, (long) screen_x_ent_zone);
+  mouse_rmb_click((long) screen_x_ent_zone, (long) screen_x_ent_zone);
+}
+
+
 void enter_zone_event_handler() {
   enter_zone_time = GetTickCount();
   mouse_lmb_down(screen_x_ent_zone,screen_y_ent_zone);
+  simple_timer(1000, &condit, &callback_proc);
   // SetTimer
   printf("ent X:  %4.2f\r\n", screen_x_ent_zone);
   printf("ent Y:  %4.2f\r\n", screen_y_ent_zone);

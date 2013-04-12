@@ -80,6 +80,7 @@
     <ClCompile Include="mouse_functions.cpp" />
     <ClCompile Include="processing.cpp" />
     <ClCompile Include="screen_coordinates_processing.cpp" />
+    <ClCompile Include="simple_console_timer.cpp" />
     <ClCompile Include="simple_filter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +89,7 @@
     <ClInclude Include="mouse_functions.h" />
     <ClInclude Include="processing.h" />
     <ClInclude Include="screen_coordinates_processing.h" />
+    <ClInclude Include="simple_console_timer.h" />
     <ClInclude Include="simple_filter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
