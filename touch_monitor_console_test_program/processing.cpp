@@ -93,16 +93,16 @@ void coordinates() {
 }
 
 void compute_coordinates_0_1() {
-  double x_transmitter_1 = 550.0;
-  double y_transmitter_1 = (333.54 / 80.0) * 77.5;
-  double x_transmitter_2 = 550.0;
-  double y_transmitter_2 = (333.54 / 80.0) * 2.5;
+  double x_transmitter_1 = 0.0;//550.0;
+  double y_transmitter_1 = (333.54 / 80.0) * 2.5;//(333.54 / 80.0) * 77.5;
+  double x_transmitter_2 = 0.0;//550.0;
+  double y_transmitter_2 = (333.54 / 80.0) * 77.5;//(333.54 / 80.0) * 2.5;
 
-  double x_point1 = 0.0;
-  double y_point1 = (333.54 / 80.0) * (80 - shadow_centers[0]);
+  double x_point1 = 550.0;//0.0;
+  double y_point1 = (333.54 / 80.0) * (/*80 - */shadow_centers[0]);
 
-  double x_point2 = 0.0;
-  double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[1]);
+  double x_point2 = 550.0;//0.0;
+  double y_point2 = (333.54 / 80.0) * (/*80 - */shadow_centers[1]);
 
   find_intersection(x_point1,
                     y_point1,
@@ -120,15 +120,15 @@ void compute_coordinates_0_1() {
 }
 
 void compute_coordinates_1_2() {
-  double x_transmitter_1 = 550.0;
-  double y_transmitter_1 = (333.54 / 80.0) * 2.5;
-  double x_transmitter_2 = 0.0;
-  double y_transmitter_2 = (333.54 / 80.0) * 2.5;
+  double x_transmitter_1 = 0.0;//550.0;
+  double y_transmitter_1 = (333.54 / 80.0) * 77.5;//(333.54 / 80.0) * 2.5;
+  double x_transmitter_2 = 550.0;//0.0;
+  double y_transmitter_2 = (333.54 / 80.0) * 77.5;//(333.54 / 80.0) * 2.5;
 
-  double x_point1 = 0.0;
-  double y_point1 = (333.54 / 80.0) * (80 - shadow_centers[1]);
-  double x_point2 = 550.0;
-  double y_point2 = (333.54 / 80.0) * shadow_centers[2];
+  double x_point1 = 550.0;//0.0;
+  double y_point1 = (333.54 / 80.0) * (/*80 - */shadow_centers[1]);
+  double x_point2 = 0.0;//550.0;
+  double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[2]);
 
 
   find_intersection(x_point1,
@@ -149,15 +149,15 @@ void compute_coordinates_1_2() {
 
 void compute_coordinates_2_3() {
 
-  double x_transmitter_1 = 0.0;
-  double y_transmitter_1 = (333.54 / 80.0) * 2.5;
-  double x_transmitter_2 = 0.0;
-  double y_transmitter_2 = (333.54 / 80.0) * 77.5;
+  double x_transmitter_1 = 550.0;//0.0;
+  double y_transmitter_1 = (333.54 / 80.0) * 77.5;//(333.54 / 80.0) * 2.5;
+  double x_transmitter_2 = 550.0;//0.0;
+  double y_transmitter_2 = (333.54 / 80.0) * 2.5;//(333.54 / 80.0) * 77.5;
 
-  double x_point1 = 550.0;
-  double y_point1 = (333.54 / 80.0) * shadow_centers[2];
-  double x_point2 = 550.0;
-  double y_point2 = (333.54 / 80.0) * shadow_centers[3];
+  double x_point1 = 0.0;//550.0;
+  double y_point1 = (333.54 / 80.0) * (80 - shadow_centers[2]);
+  double x_point2 = 0.0;//550.0;
+  double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[3]);
 
 
   find_intersection(x_point1,
@@ -176,15 +176,15 @@ void compute_coordinates_2_3() {
 }
 
 void compute_coordinates_0_3() {
-  double x_transmitter_1 = 550.0;
-  double y_transmitter_1 = (333.54 / 80.0) * 77.5;
-  double x_transmitter_2 = 0.0;
-  double y_transmitter_2 = (333.54 / 80.0) * 77.5;
+  double x_transmitter_1 = 0.0;//550.0;
+  double y_transmitter_1 = (333.54 / 80.0) * 2.5;//(333.54 / 80.0) * 77.5;
+  double x_transmitter_2 = 550.0;//0.0;
+  double y_transmitter_2 = (333.54 / 80.0) * 2.5;//(333.54 / 80.0) * 77.5;
 
-  double x_point1 = 0.0;
-  double y_point1 = (333.54 / 80.0) * (80 - shadow_centers[0]);
-  double x_point2 = 550.0;
-  double y_point2 = (333.54 / 80.0) * shadow_centers[3];
+  double x_point1 = 550.0;//0.0;
+  double y_point1 = (333.54 / 80.0) * (/*80 - */shadow_centers[0]);
+  double x_point2 = 0.0;//550.0;
+  double y_point2 = (333.54 / 80.0) * (80 - shadow_centers[3]);
 
   find_intersection(x_point1,
                     y_point1,
