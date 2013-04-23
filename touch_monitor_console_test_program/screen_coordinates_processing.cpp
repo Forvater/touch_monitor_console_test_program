@@ -3,6 +3,8 @@
 #include "mouse_functions.h"
 #include "simple_console_timer.h"
 
+const double hold_area_x = 30.0;
+const double hold_area_y = 30.0;
 double screen_x = 0.0;
 double screen_y = 0.0;
 double screen_x_prev = 0.0;
@@ -48,7 +50,7 @@ void print_coordinates_and_set_cursor(double x, double y) {
 }
 
 bool condit() {
-  if (((screen_x_ent_zone - screen_x) < 100.0) && ((screen_y_ent_zone - screen_y) < 100.0)) {
+  if (((screen_x_ent_zone - screen_x) < hold_area_x) && ((screen_y_ent_zone - screen_y) < hold_area_y)) {
     return true;
   } else {
     return false;
