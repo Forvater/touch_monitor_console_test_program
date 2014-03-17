@@ -88,7 +88,7 @@ void parse_buffer(unsigned char* buffer, int buffer_size) {
 void read_file(HANDLE file, DWORD file_size) {
   unsigned char* buffer = new unsigned char[file_size];
   DWORD number_of_bytes_read = 0;
-  ReadFile(settings_file_handle, buffer, file_size, &number_of_bytes_read, NULL);
+  ReadFile(file, buffer, file_size, &number_of_bytes_read, NULL);
   parse_buffer(buffer, file_size);
   delete[] buffer;
 }
