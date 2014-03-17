@@ -7,7 +7,6 @@
 extern const unsigned long event_mask_to_set;
 extern const unsigned long kInputBufferSize;
 extern const unsigned long kOutputBufferSize;
-extern const CString com_port_name;
 extern const long kRecvBufferSize;
 extern HANDLE com_port_handle;
 extern COMSTAT com_status;

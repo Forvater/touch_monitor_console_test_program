@@ -79,6 +79,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mouse_functions.cpp" />
     <ClCompile Include="processing.cpp" />
+    <ClCompile Include="read_settings_from_file.cpp" />
     <ClCompile Include="screen_coordinates_processing.cpp" />
     <ClCompile Include="simple_console_timer.cpp" />
     <ClCompile Include="simple_filter.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="intersection.h" />
     <ClInclude Include="mouse_functions.h" />
     <ClInclude Include="processing.h" />
+    <ClInclude Include="read_settings_from_file.h" />
     <ClInclude Include="screen_coordinates_processing.h" />
     <ClInclude Include="simple_console_timer.h" />
     <ClInclude Include="simple_filter.h" />

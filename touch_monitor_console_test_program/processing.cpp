@@ -3,6 +3,7 @@
 #include "intersection.h"
 #include "simple_filter.h"
 #include "screen_coordinates_processing.h"
+#include "read_settings_from_file.h"
 
 //constants
 const double kLength = 549.0;
@@ -213,8 +214,8 @@ void compute_coordinates_0_3() {
 
 void coordinates_scale_print_and_set_cursor(double x, double y) {
   if ((x != 0.0) && (y != 0.0)) {
-    x = x * (1920.0/479.0 /*kLength*/);
-    y = y * (1080.0/269.0 /*kTransistorsLineLength*/);
+    x = x * (screen_width/479.0 /*kLength*/);
+    y = y * (screen_height/269.0 /*kTransistorsLineLength*/);
   }
   print_coordinates_and_set_cursor(x, y);
 }

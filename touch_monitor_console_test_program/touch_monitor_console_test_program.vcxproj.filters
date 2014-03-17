@@ -39,6 +39,9 @@
     <ClCompile Include="simple_console_timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="read_settings_from_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com_port_settings.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_console_timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="read_settings_from_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

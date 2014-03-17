@@ -2,6 +2,7 @@
 #include <atlstr.h>
 #include <iostream>
 #include "processing.h"
+#include "read_settings_from_file.h"
 
 const unsigned char kPacketSize = 42;
 
@@ -10,7 +11,6 @@ const unsigned char kBufferSize = (kPacketSize * 2) - 1;
 const unsigned long event_mask_to_set = EV_RXCHAR;
 const unsigned long kInputBufferSize = 2000;
 const unsigned long kOutputBufferSize = 2000;
-const CString com_port_name = _T("COM3");
 const long kRecvBufferSize = 2000;
 HANDLE com_port_handle;
 COMSTAT com_status;
